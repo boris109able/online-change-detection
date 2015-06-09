@@ -1,19 +1,20 @@
 epsilon = 0.5;
-step = 0.5;
+step = 0.1;
 count = 1;
 [row, len] = size(0:step:10);
 ARL = zeros(len,1);
 delay = zeros(len,1);
 ARLTime = zeros(len,1);
 delayTime = zeros(len,1);
-for B = 2:step:6
-    disp(count);
+%Data stores data 0:0.1:1.4 15 points in total
+for B = 1.5:step:2.1
+    disp(B);
     tic;
     [ARL(count), ARLTime(count)] = parallel_error(B, epsilon);
     [delay(count), delayTime(count)] = parallel_delay(B, epsilon);
     count = count + 1;
     toc;
-    save('ARL','ARLTime','delay','delayTime');
+    save('Data2','B','ARL','ARLTime','delay','delayTime');
 end
 figure(3)
 semilogx(ARL,delay);
